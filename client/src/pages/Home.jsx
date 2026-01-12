@@ -17,24 +17,18 @@ const Home = () => {
             console.log(message);
         }
 
-        dispatch(getGigs(searchTerm));
+        dispatch(getGigs('')); // Fetch all gigs on mount
 
         return () => {
             dispatch(reset());
         };
-    }, [isError, message, dispatch, searchTerm]); // Adding searchTerm to dependency array for live search? Or separate submit?
-    // Let's do live search with debounce normally, but for now, let's just add a search button or effect.
-    // Actually, putting logic in onSubmit is better for performance than every keystroke without debounce.
-    // Re-writing effect to only run on mount/reset.
+    }, [isError, message, dispatch]);
 
     const onSearch = (e) => {
         e.preventDefault();
         dispatch(getGigs(searchTerm));
     };
 
-    if (isLoading) {
-        return <div className="flex justify-center mt-20"><div className="loader">Loading...</div></div>;
-    }
 
     return (
         <div className="py-10">

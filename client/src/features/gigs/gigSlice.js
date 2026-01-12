@@ -35,14 +35,6 @@ export const getGig = createAsyncThunk('gigs/getOne', async (gigId, thunkAPI) =>
 // Create Gig
 export const createGig = createAsyncThunk('gigs/create', async (gigData, thunkAPI) => {
     try {
-        // Get token
-        const token = thunkAPI.getState().auth.user.token; // Wait, I use Cookies. Do I need token in header?
-        // Logic: AuthMiddleware checks cookies. Axios needs `withCredentials: true`.
-        // The token is HttpOnly cookie, so I don't need to send it in header manually if browser handles it.
-        // My authSlice login sets user in localStorage but NOT the token string if it's HttpOnly.
-        // Backend `generateToken` sets cookie.
-        // Frontend `axios` needs `withCredentials: true`.
-
         const config = {
             headers: {
                 'Content-Type': 'application/json',

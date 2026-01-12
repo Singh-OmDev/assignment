@@ -47,6 +47,8 @@ router.get('/:id', async (req, res) => {
 router.post('/', protect, async (req, res) => {
     const { title, description, budget } = req.body;
 
+    console.log('Create Gig Body:', req.body); // Debug logging
+
     if (!title || !description || !budget) {
         return res.status(400).json({ message: 'Please fill in all fields' });
     }
